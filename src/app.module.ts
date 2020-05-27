@@ -3,13 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
 
 require('dotenv').config()
 
 @Module({
   imports: [
     UsersModule,
-    MongooseModule.forRoot(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-lp6cn.gcp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
+    MongooseModule.forRoot(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-lp6cn.gcp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`),
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
